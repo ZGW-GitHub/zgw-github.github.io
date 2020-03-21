@@ -1,0 +1,1283 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【 Spring 系列 03 】：Spring Data, 愆凡の博客">
+    <meta name="description" content="Spring Data
+
+Spring Data 项目是从 2010 年发展起来的，从创立之初 Spring Data 就想提供一个大家熟悉的、一致的、基于 Spring 的数据访问编程模型，同时仍然保留底层数据存储的特殊特性。它可以轻松地">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>【 Spring 系列 03 】：Spring Data | 愆凡の博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">愆凡の博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">愆凡の博客</div>
+        <div class="logo-desc">
+            
+            Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ZGW-GitHub" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ZGW-GitHub" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = 'cd0262c224ac0370521a2dc5e298c8ab3baea47a4d9909b12345fbd091173ef9';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('文章正在修正，请稍后再来阅读！')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【 Spring 系列 03 】：Spring Data</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Spring-%E5%85%A8%E5%AE%B6%E6%A1%B6/">
+                                <span class="chip bg-color">Spring 全家桶</span>
+                            </a>
+                        
+                            <a href="/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-category">
+                                常用框架
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-09-22
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-03-21
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+				
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Spring-Data"><a href="#Spring-Data" class="headerlink" title="Spring Data"></a>Spring Data</h1><p><img src="%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/Spring%20Data.jpg" alt="Spring Data"></p>
+<blockquote>
+<p>Spring Data 项目是从 2010 年发展起来的，从创立之初 Spring Data 就想提供一个大家熟悉的、一致的、基于 Spring 的数据访问编程模型，同时仍然保留底层数据存储的特殊特性。它可以轻松地让开发者使用数据访问技术，包括：关系数据库、非关系数据库（NoSQL）和基于云的数据服务。</p>
+<p>Spring Data Common 是 Spring Data 所有模块的公用部分，该项目提供跨 Spring 数据项目的共享基础设施。它包含了技术中立的库接口以及一个坚持 java 类的元数据模型。</p>
+<p>Spring Data 不仅对传统的数据库访问技术 JDBC、Hibernate、 JDO、TopLick、JPA、Mybitas 做了很好的支持、扩展、抽象、提供方便的 API，还对 NoSQL 等非关系数据做了很好的支持，包括：MongoDB、 Redis、Apache Solr 等。</p>
+</blockquote>
+<h3 id="Spring-Data-的子项目："><a href="#Spring-Data-的子项目：" class="headerlink" title="Spring Data 的子项目："></a>Spring Data 的子项目：</h3><h4 id="主要子项目（Main-modules）如下："><a href="#主要子项目（Main-modules）如下：" class="headerlink" title="主要子项目（Main modules）如下："></a>主要子项目（Main modules）如下：</h4><ul>
+<li>Spring Data Commons</li>
+<li>Spring Data Gemfire</li>
+<li>Spring Data JPA</li>
+<li>Spring Data KeyValue</li>
+<li>Spring Data LDAP</li>
+<li>Spring Data MongoDB</li>
+<li>Spring Data REST</li>
+<li>Spring Data Redis</li>
+<li>Spring Data for Apache Cassandra</li>
+<li>Spring Data for Apache Solr</li>
+</ul>
+<h4 id="社区支持的子项目（Community-modules）："><a href="#社区支持的子项目（Community-modules）：" class="headerlink" title="社区支持的子项目（Community modules）："></a>社区支持的子项目（Community modules）：</h4><ul>
+<li>Spring Data Aerospike</li>
+<li>Spring Data Couchbase</li>
+<li>Spring Data DynamoDB</li>
+<li>Spring Data Elasticsearch</li>
+<li>Spring Data Hazelcast</li>
+<li>Spring Data Jest</li>
+<li>Spring Data Neo4j</li>
+<li>Spring Data Vault</li>
+</ul>
+<h4 id="其他子项目（Related-modules）："><a href="#其他子项目（Related-modules）：" class="headerlink" title="其他子项目（Related modules）："></a>其他子项目（Related modules）：</h4><ul>
+<li>Spring Data JDBC Extensions</li>
+<li>Spring for Apache Hadoop</li>
+<li>Spring Content</li>
+</ul>
+<h3 id="Spring-Data-操作的主要特性："><a href="#Spring-Data-操作的主要特性：" class="headerlink" title="Spring Data 操作的主要特性："></a>Spring Data 操作的主要特性：</h3><p>Spring Data 项目旨在为大家提供一种通用的编码模式。</p>
+<ul>
+<li><p>数据访问对象实现了对物理数据层的抽象，为编写查询方法提供了方便；</p>
+</li>
+<li><p>通过对象映射，实现域对象和持续化存储之间的转换；</p>
+</li>
+<li><p>而模板提供的是对底层存储实体的访问实现。</p>
+</li>
+</ul>
+<p>如下图所示，操作上主要有如下特征：</p>
+<p><img src="%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/Spring%20Data%20%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7.png" alt="Spring Data 操作的主要特性"></p>
+<h1 id="Spring-Data-JPA"><a href="#Spring-Data-JPA" class="headerlink" title="Spring Data JPA"></a>Spring Data JPA</h1><p><img src="%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/Spring%20Data%20JPA.jpg" alt="Spring Data JPA"></p>
+<h2 id="一、基础原理概念"><a href="#一、基础原理概念" class="headerlink" title="一、基础原理概念"></a>一、基础原理概念</h2><h3 id="1、JPA-规范"><a href="#1、JPA-规范" class="headerlink" title="1、JPA 规范"></a>1、JPA 规范</h3><p>JPA 是 Java Persistence API 的简称，中文名为 Java 持久层 API，是 JDK 5.0 注解或 XML 描述”对象——关系表“的映射关系，并将运行期的实体对象持久化到数据库中。 JPA 的宗旨是为 POJO 提供持久化标准规范。</p>
+<p>Sun 引入新的 JPA ORM 规范出于两个原因：</p>
+<ul>
+<li>其一，简化现有 Java EE 和 Java SE 应用开发工作；</li>
+<li>其二，Sun 希望整合 ORM 技术，实现天下归一。</li>
+</ul>
+<h3 id="2、Spring-Data-JPA"><a href="#2、Spring-Data-JPA" class="headerlink" title="2、Spring Data JPA"></a>2、Spring Data JPA</h3><p>Spring Data JPA 可以理解为 JPA 规范的再次封装抽象，底层还是使用了 Hibernate 的 JPA 技术实现，引用 JPQL（ Java Persistence Query Language ）查询语言，属于 Spring 整个生态体系的一部分。</p>
+<p><img src="%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/Spring%20Data%20JPA%20%E4%B8%BB%E8%A6%81%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3.png" alt="Spring Data JPA 主要类与接口"></p>
+<p>其中，Repository、CrudRepository、PagingAndSortingRepository 类是属于 Spring Data 项目中的 Spring Data Commons 子项目（ 是 Spring Data 为了兼容 NoSQL 而进行的一些抽象封装 ）。其余的就是 Spring Data 子项目 Spring Data JPA 所独有的了（ 对关系型数据库进行抽象封装 ）。</p>
+<ul>
+<li>其中 JpaRepository 类支持 Query By Example，批量删除，提高删除效率，手动刷新数据库的更改方法，并将默认实现的查询结果变成了 List。</li>
+<li>SimpleJpaRepository 是 JPA 整个关联数据库的所有 Repository 的接口实现类。如果想进行扩展，可以继承此类。同时它也是 Spring JPA 动态代理的实现类，包括后面的 Query Method。</li>
+</ul>
+<h2 id="二、定义式查询方法"><a href="#二、定义式查询方法" class="headerlink" title="二、定义式查询方法"></a>二、定义式查询方法</h2><h2 id="三、注解式查询方法"><a href="#三、注解式查询方法" class="headerlink" title="三、注解式查询方法"></a>三、注解式查询方法</h2><h3 id="Query"><a href="#Query" class="headerlink" title="@Query"></a>@Query</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.ANNOTATION_TYPE&#125;)</span><br><span class="line"><span class="meta">@QueryAnnotation</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Query &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指定JPQL的查询语句。（ nativeQuery=true，是原生的 SQL 语句。）</span></span><br><span class="line"><span class="comment">     * JPQL : Java persistence Query Language 面向对象的查询语言</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指定 count 的JPQL语句，如果不指定将根据 query 自动生成。（ nativeQuery=true，是原生的 SQL 语句 ）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">String <span class="title">countQuery</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据哪个字段来 count ，一般默认即可。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">String <span class="title">countProjection</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 默认 false ，表示 value 里面是不是原生的 Sql 语句</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">nativeQuery</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 可以指定一个 query 的名字，必须唯一。</span></span><br><span class="line"><span class="comment">     * 如果不指定，默认的生成规则是：&#123;$domainClass&#125;.&#123;$queryMethodName&#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 可以指定一个 count 的 query 名字，必须唯一。</span></span><br><span class="line"><span class="comment">     * 如果不指定，默认的生成规则是：&#123;$domainClass&#125;.&#123;$queryMethodName&#125;.count</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">String <span class="title">countName</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Param"><a href="#Param" class="headerlink" title="@Param"></a>@Param</h3><blockquote>
+<p>默认情况下，参数是通过顺序绑定在查询语句上的。这使得在对查询方法进行重构时参数位置容易出错。为了解决这个问题，可以使用 @Param 注解指定方法参数的具体名称，通过绑定的参数名字做查询条件。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(value = <span class="string">"SELECT * FROM campus WHERE region = :region order by :name"</span>, nativeQuery = <span class="keyword">true</span>)</span><br><span class="line"><span class="function">List&lt;Campus&gt; <span class="title">findByRegion</span><span class="params">(@Param(<span class="string">"region"</span>)</span>String region, @<span class="title">Param</span><span class="params">(<span class="string">"name"</span>)</span>String name)</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="SqEL-表达式的支持"><a href="#SqEL-表达式的支持" class="headerlink" title="SqEL 表达式的支持"></a>SqEL 表达式的支持</h4><blockquote>
+<p>《 Spring Data JPA 从入门到精通 》P65</p>
+</blockquote>
+<h3 id="Modifying-修改查询"><a href="#Modifying-修改查询" class="headerlink" title="@Modifying 修改查询"></a>@Modifying 修改查询</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.ANNOTATION_TYPE&#125;)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Modifying &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果配置了一级缓存，这时用 clearAutomatically=true ，就会刷新 hibernate 的一级缓存，</span></span><br><span class="line"><span class="comment">     * 不然你在同一接口更新一个对象，接着查询这个对象，查出来的对象就是之前没有更新前的状态。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">clearAutomatically</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="QueryHints"><a href="#QueryHints" class="headerlink" title="@QueryHints"></a>@QueryHints</h3><blockquote>
+<p>《 Spring Data JPA 从入门到精通 》P67</p>
+</blockquote>
+<h3 id="Procedure-储存过程的查询方法"><a href="#Procedure-储存过程的查询方法" class="headerlink" title="@Procedure 储存过程的查询方法"></a>@Procedure 储存过程的查询方法</h3><blockquote>
+<p>《 Spring Data JPA 从入门到精通 》P68</p>
+</blockquote>
+<h3 id="NamedQueries-预定义查询"><a href="#NamedQueries-预定义查询" class="headerlink" title="@NamedQueries 预定义查询"></a>@NamedQueries 预定义查询</h3><blockquote>
+<p>《 Spring Data JPA 从入门到精通 》P70</p>
+</blockquote>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><h4 id="nativeQuery-true-与-Sort-参数"><a href="#nativeQuery-true-与-Sort-参数" class="headerlink" title="nativeQuery=true 与 Sort 参数"></a>nativeQuery=true 与 Sort 参数</h4><blockquote>
+<p>nativeQuery 不支持 Sort 的参数查询。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误写法</span></span><br><span class="line"><span class="meta">@Query</span>(value = <span class="string">"SELECT * FROM campus WHERE region LIKE %?1"</span>, nativeQuery = <span class="keyword">true</span>)</span><br><span class="line"><span class="function">List&lt;Campus&gt; <span class="title">findByRegion</span><span class="params">(String region, Sort sortObj)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确写法</span></span><br><span class="line"><span class="meta">@Query</span>(value = <span class="string">"SELECT * FROM campus WHERE region LIKE %?1 order by ?2"</span>, nativeQuery = <span class="keyword">true</span>)</span><br><span class="line"><span class="function">List&lt;Campus&gt; <span class="title">findByRegion</span><span class="params">(String region, String sortStr)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="nativeQuery-true-与-Pageable-参数"><a href="#nativeQuery-true-与-Pageable-参数" class="headerlink" title="nativeQuery=true 与 Pageable 参数"></a>nativeQuery=true 与 Pageable 参数</h4><blockquote>
+<p>《 Spring Data JPA 从入门到精通 》P63</p>
+</blockquote>
+<h2 id="四、-Entity-实例中常用注解"><a href="#四、-Entity-实例中常用注解" class="headerlink" title="四、@Entity 实例中常用注解"></a>四、@Entity 实例中常用注解</h2><blockquote>
+<p>基本注解包括：</p>
+<ul>
+<li>@Entity、@Table、@Id、</li>
+<li>@IdClass、 @GeneratedValue、@Basic、</li>
+<li>@Transient、@Column、@Temporal、 @Enumerated、@Lob</li>
+</ul>
+</blockquote>
+<h3 id="Entity"><a href="#Entity" class="headerlink" title="@Entity"></a>@Entity</h3><blockquote>
+<p>@Entity 定义对象将会成为被 JPA 管理的实体，将映射到指定的数据库表。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Entity &#123;</span><br><span class="line">    <span class="comment">// 可选，默认是此实体类的名字，全局唯一</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Table"><a href="#Table" class="headerlink" title="@Table"></a>@Table</h3><blockquote>
+<p>@Table 指定数据库的表名。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</span><br><span class="line">    <span class="comment">// 表的名字，可选。默认实体名。</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">	<span class="comment">// 此表的 catalog ，可选</span></span><br><span class="line">    <span class="function">String <span class="title">catalog</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">	<span class="comment">// 此表所在的 schema ，可选</span></span><br><span class="line">    <span class="function">String <span class="title">schema</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">	<span class="comment">// 唯一性约束，只有创建表的时候有用，默认不需要</span></span><br><span class="line">    UniqueConstraint[] uniqueConstraints() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">	<span class="comment">// 索引，只有创建表的时候有用，默认不需要</span></span><br><span class="line">    Index[] indexes() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Id"><a href="#Id" class="headerlink" title="@Id"></a>@Id</h3><blockquote>
+<p>@Id 定义属性为数据库的主键，一个实体里面必须有一个。</p>
+</blockquote>
+<h3 id="GeneratedValue"><a href="#GeneratedValue" class="headerlink" title="@GeneratedValue"></a>@GeneratedValue</h3><blockquote>
+<p>@GeneratedValue 为主键生成策略。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.FIELD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> GeneratedValue &#123;</span><br><span class="line">    <span class="comment">// 指定主键的生成策略</span></span><br><span class="line">    <span class="function">GenerationType <span class="title">strategy</span><span class="params">()</span> <span class="keyword">default</span> GenerationType.AUTO</span>;</span><br><span class="line">    <span class="function">String <span class="title">generator</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 四种主键的生成策略</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> GenerationType &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过表产生主键，框架由表模拟序列产生主键，使用该策略可以使应用更易于数据库移植</span></span><br><span class="line">    TABLE,</span><br><span class="line">    <span class="comment">// 通过序列产生主键，通过 @SequenceGenerator 注解指定序列名，MySQL 不支持这种方式</span></span><br><span class="line">    SEQUENCE,</span><br><span class="line">    <span class="comment">// 采用数据库ID自增长，一般用于 MySQL 数据库</span></span><br><span class="line">    IDENTITY,</span><br><span class="line">	<span class="comment">// JPA 自动选择合适的策略，该选项是默认选项</span></span><br><span class="line">    AUTO;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">GenerationType</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="IdClass"><a href="#IdClass" class="headerlink" title="@IdClass"></a>@IdClass</h3><blockquote>
+<p>76</p>
+</blockquote>
+<h3 id="Basic"><a href="#Basic" class="headerlink" title="@Basic"></a>@Basic</h3><blockquote>
+<p>@Basic 表示属性是到数据库表的字段的映射 。</p>
+<p>如果实体的字段上没有任何注解，默认即为 @Basic 。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.FIELD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Basic &#123;</span><br><span class="line">    <span class="comment">// 可选，EAGER（默认）为立即加载，LAZY 为延迟加载（ LAZY主要用于大字段上 ）</span></span><br><span class="line">    <span class="function">FetchType <span class="title">fetch</span><span class="params">()</span> <span class="keyword">default</span> FetchType.EAGER</span>;</span><br><span class="line">    <span class="comment">// 可选，设置这个字段是否可以为 null</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">optional</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Transient"><a href="#Transient" class="headerlink" title="@Transient"></a>@Transient</h3><blockquote>
+<p>@Transient 表示该属性并非一个到数据库表的字段的映射，表示非持久化属性，与 @Basic 作用相反。</p>
+<p>JPA 映射数据库的时候忽略它。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 除了 @Transient 注解，还有三种情况，Spring Data JPA 会忽略字段：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. static 字段</span></span><br><span class="line"><span class="keyword">static</span> String transient1;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. final 字段</span></span><br><span class="line"><span class="keyword">final</span> String transient2 = “Satish”;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. transient 修饰符修饰的字段</span></span><br><span class="line"><span class="keyword">transient</span> String transient3;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Column"><a href="#Column" class="headerlink" title="@Column"></a>@Column</h3><blockquote>
+<p>@Column 定义该属性对应数据库中的列名。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.FIELD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Column &#123;</span><br><span class="line">    <span class="comment">// 数据库中表的列名，默认字段名和实体属性名一样</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">	<span class="comment">// 是否唯一</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">unique</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">	<span class="comment">// 是否允许为空</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">nullable</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">	<span class="comment">// 执行 insert 时是否包含此字段</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">insertable</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">	<span class="comment">// 执行 updata 时是否包含此字段</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">updatable</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">	<span class="comment">// 表示该字段在数据库中的实际类型</span></span><br><span class="line">    <span class="function">String <span class="title">columnDefinition</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">	<span class="comment">// 该列所在的表</span></span><br><span class="line">    <span class="function">String <span class="title">table</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">	<span class="comment">// 数据库字段的长度</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span> <span class="keyword">default</span> 255</span>;</span><br><span class="line">	<span class="comment">// 精度相关</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">precision</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">	<span class="comment">// 精度相关</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">scale</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Temporal"><a href="#Temporal" class="headerlink" title="@Temporal"></a>@Temporal</h3><blockquote>
+<p>@Temporal 用来设置 Date 类型的属性映射到对应精度的字段。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 映射为日期 date（只有日期）</span></span><br><span class="line"><span class="meta">@Temporal</span>(TemporalType.DATE)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 映射为日期 time（只有时间）</span></span><br><span class="line"><span class="meta">@Temporal</span>(TemporalType.TIME)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 映射为日期 date time（日期+时间）</span></span><br><span class="line"><span class="meta">@Temporal</span>(TemporalType.TIMESTAMP)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Enumerated"><a href="#Enumerated" class="headerlink" title="@Enumerated"></a>@Enumerated</h3><blockquote>
+<p>直接映射 enum 枚举类型的字段。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @Enumerated 源码</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;METHOD, FIELD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Enumerated &#123;</span><br><span class="line">    <span class="function">EnumType <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ORDINAL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// EnumType 取值</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumType &#123;</span><br><span class="line">    <span class="comment">// 映射枚举字段的下标</span></span><br><span class="line">    ORDINAL,</span><br><span class="line">    <span class="comment">// 映射枚举的Name</span></span><br><span class="line">    STRING</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Gender &#123;</span><br><span class="line">    MAIL(<span class="string">"男性"</span>),</span><br><span class="line">    FMAIL(<span class="string">"女性"</span>);</span><br><span class="line">    <span class="keyword">private</span> String value;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Gender</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"tb_user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Enumerated</span>( EnumType.STRING )</span><br><span class="line">    <span class="keyword">private</span> Gender gender;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这时插入两条数据，数据库里面的值是MAIL/FMAIL，而不是“男性”/“女性”。</span></span><br><span class="line"><span class="comment">// 如果我们用 @Enumerated(EnumType.ORDINAL)，那么这时数据库里面的值是0,1。</span></span><br><span class="line"><span class="comment">// 但是实际工作中，不建议用数字下标，因为枚举里面的属性值是会不断新增的，如果新增一个，位置变化了就惨了。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Lob"><a href="#Lob" class="headerlink" title="@Lob"></a>@Lob</h3><blockquote>
+<p>@Lob 将属性映射成数据库支持的大对象类型，支持以下两种数据库类型的字段。</p>
+<p>P81</p>
+</blockquote>
+<h3 id="关联关系注解"><a href="#关联关系注解" class="headerlink" title="关联关系注解"></a>关联关系注解</h3><blockquote>
+<p>P82</p>
+</blockquote>
+<h3 id="Left-join、Inner-join-与-EntityGraph"><a href="#Left-join、Inner-join-与-EntityGraph" class="headerlink" title="Left join、Inner join 与 EntityGraph"></a>Left join、Inner join 与 EntityGraph</h3><blockquote>
+<p>P89</p>
+</blockquote>
+<h2 id="N、Spring-Boot-整合"><a href="#N、Spring-Boot-整合" class="headerlink" title="N、Spring Boot 整合"></a>N、Spring Boot 整合</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">jpa:</span></span><br><span class="line">    <span class="attr">hibernate:</span></span><br><span class="line">      <span class="attr">ddl-auto:</span> <span class="string">update</span> <span class="comment"># 根据实体类更新或创建表结构</span></span><br><span class="line">    <span class="attr">show-sql:</span> <span class="literal">true</span> <span class="comment"># 显示 SQL 语句</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="a、定义-Entity"><a href="#a、定义-Entity" class="headerlink" title="a、定义 Entity"></a>a、定义 Entity</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="b、Dao-编写"><a href="#b、Dao-编写" class="headerlink" title="b、Dao 编写"></a>b、Dao 编写</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、继承  Repository <span class="tag">&lt; <span class="attr">C</span> , <span class="attr">T</span> &gt;</span></span><br><span class="line">    </span><br><span class="line">    其中: C 为实体类 , T 为主键的类型</span><br><span class="line"></span><br><span class="line">2、可以通过拼接属性名组成方法名来实现</span><br><span class="line">    </span><br><span class="line">	注意：在拼接属性名时，当属性名与表的列名不一致时，拼接时使用属性名</span><br></pre></td></tr></table></figure>
+
+<h1 id="Spring-Data-Mybatis"><a href="#Spring-Data-Mybatis" class="headerlink" title="Spring Data Mybatis"></a>Spring Data Mybatis</h1><h1 id="Spring-Data-Redis"><a href="#Spring-Data-Redis" class="headerlink" title="Spring Data Redis"></a>Spring Data Redis</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h1 id="-2"><a href="#-2" class="headerlink" title=""></a></h1><h1 id="-3"><a href="#-3" class="headerlink" title=""></a></h1><h1 id="-4"><a href="#-4" class="headerlink" title=""></a></h1><h1 id="-5"><a href="#-5" class="headerlink" title=""></a></h1><h1 id="-6"><a href="#-6" class="headerlink" title=""></a></h1><h1 id="-7"><a href="#-7" class="headerlink" title=""></a></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a></h1>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">愆凡</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/2019/09/22/%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/">http://yoursite.com/2019/09/22/%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://yoursite.com" target="_blank">愆凡</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Spring-%E5%85%A8%E5%AE%B6%E6%A1%B6/">
+                                    <span class="chip bg-color">Spring 全家桶</span>
+                                </a>
+                            
+                                <a href="/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/10/09/%E3%80%90%20Interview%20%E3%80%91/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【 Interview 】">
+                        
+                        <span class="card-title">【 Interview 】</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            额Java ME    &amp;    Java SE    &amp;    Java EE
+
+Java SE
+标准版的 Java 平台，为用户提供一个程序开发环境。
+这个程序开发环境提供了开发与运行 Java 软件的编译器等开发工具 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Interview/" class="post-category">
+                                    Interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/09/21/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2001%20%E3%80%91%EF%BC%9AGit/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【 必备技术 01 】：Git">
+                        
+                        <span class="card-title">【 必备技术 01 】：Git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            概念
+工作区：
+
+是对项目的某个版本独立提取出来的内容。
+
+暂存区：
+
+是一个文件，保存了下次将要提交的文件列表信息，一般在 Git 仓库目录中。 按照 Git 的术语叫做“索引”，不过一般说法还是叫“暂存区”。
+
+Git 仓库目录：
+
+是
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    必备技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('3'),
+            headingSelector: 'h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="http://yoursite.com" target="_blank">愆凡</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">150.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备19032957号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ZGW-GitHub" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zgwmail@icloud.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=864127700" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 864127700" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

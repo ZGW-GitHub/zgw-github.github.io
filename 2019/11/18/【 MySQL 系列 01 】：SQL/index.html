@@ -1002,91 +1002,37 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/12/04/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+                <a href="/2019/11/27/%E3%80%90%20Redis%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9ARedis%20%E5%A4%9A%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9E%E7%8E%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【 Java 系列 03 】：并发编程">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【 Redis 系列 02 】：Redis 多机数据库的实现">
                         
-                        <span class="card-title">【 Java 系列 03 】：并发编程</span>
+                        <span class="card-title">【 Redis 系列 02 】：Redis 多机数据库的实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            一、复制1、基础a、复制的拓扑
+一主一从
 
-并发 :
-  并发的关键是你有处理多个任务的能力，不一定要同时 。
+一主多从
 
-并行 :
-  并行的关键是你有同时处理多个任务的能力 。
-  与并行对立的是串行。
-
-并行与并发最关键的点就是：是否是『同时』。
+树状主从
 
 
-举例 :
 
-你吃饭吃到一半，电话
+b、复制的建立
+
+在配置文件中加入 slaveof{masterHost}{masterPort} 随 Redis 启动生效。
+在 redis-server 启动命令后
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-27
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/11/06/%E3%80%90%20MySQL%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9A%E7%B4%A2%E5%BC%95/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【 MySQL 系列 03 】：索引">
-                        
-                        <span class="card-title">【 MySQL 系列 03 】：索引</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            一、索引1、索引分类a、从 数据结构 角度
-B+树 索引
-hash 索引
-
-b、从 物理存储 角度
-聚集索引
-
-一个表中只能有一个聚集索引
-聚集索引的生产规则：
-
-如果有主键被定义 , 则使用主键生成聚簇索引 ；
-无主键 , 则该表的第一个
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-06
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1102,10 +1048,56 @@ b、从 物理存储 角度
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/11/14/%E3%80%90%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%2001%20%E3%80%91%EF%BC%9A%E5%9F%BA%E7%A1%80/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【 操作系统 01 】：基础">
+                        
+                        <span class="card-title">【 操作系统 01 】：基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            一、进程 &amp; 线程进程间通信
+进程具有完全独立的内存结构，就连父进程创建的子进程也不会与父进程共享内存空间。
+因此，进程间的通信只能通过其它特殊方法完成。
+
+通过管道实现进程间通信
+管道并非属于进程的资源，而是和套接字一样，属于操作
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
@@ -1253,7 +1245,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.2k</span>&nbsp;字
+                class="white-color">150.4k</span>&nbsp;字
             
             
             
