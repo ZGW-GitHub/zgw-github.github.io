@@ -1,79 +1,533 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>愆凡の博客 - 愆凡</title><meta name="description" content="Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig."><meta name="author" content="愆凡"><meta name="copyright" content="愆凡"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="愆凡の博客"><meta name="twitter:description" content="Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig."><meta name="twitter:image" content="http://yoursite.com/img/avatar.png"><meta property="og:type" content="website"><meta property="og:title" content="愆凡の博客"><meta property="og:url" content="http://yoursite.com/page/4/"><meta property="og:site_name" content="愆凡の博客"><meta property="og:description" content="Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig."><meta property="og:image" content="http://yoursite.com/img/avatar.png"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = '1'
-var t = Cookies.get("theme")
-if (autoChangeMode == '1'){
-  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
-  const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
-  const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
-  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 
-  if (t === undefined){
-    if (isLightMode) activateLightMode()
-    else if (isDarkMode) activateDarkMode()
-    else if (isNotSpecified || hasNoSupport){
-      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-      now = new Date();
-      hour = now.getHours();
-      isNight = hour < 6 || hour >= 18
-      isNight ? activateDarkMode() : activateLightMode()
-  }
-  } else if (t == 'light') activateLightMode()
-  else activateDarkMode()
 
-} else if (autoChangeMode == '2'){
-  now = new Date();
-  hour = now.getHours();
-  isNight = hour < 6 || hour >= 18
-  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
-  else if (t === 'light') activateLightMode()
-  else activateDarkMode() 
-} else {
-  if ( t == 'dark' ) activateDarkMode()
-  else if ( t == 'light') activateLightMode()
-}
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="愆凡の博客">
+    <meta name="description" content="愆凡の博客">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>愆凡の博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-function activateDarkMode(){
-  document.documentElement.setAttribute('data-theme', 'dark')
-  if (document.querySelector('meta[name="theme-color"]') !== null){
-    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
-  }
-}
-function activateLightMode(){
-  document.documentElement.setAttribute('data-theme', 'light')
-  if (document.querySelector('meta[name="theme-color"]') !== null){
-  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
-  }
-}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://yoursite.com/page/4/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://blog.notuptoyou.site","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  bookmark: {
-    title: 'Snackbar.bookmark.title',
-    message_prev: '按',
-    message_next: '键将本页加入书签'
-  },
-  runtime_unit: '天',
-  runtime: true,
-  copyright: undefined,
-  ClickShowText: undefined,
-  medium_zoom: false,
-  fancybox: true,
-  Snackbar: undefined,
-  baiduPush: false,
-  highlightCopy: true,
-  highlightLang: true,
-  highlightShrink: false,
-  isFontAwesomeV5: false
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">愆凡の博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
   
-}</script><script>var GLOBAL_CONFIG_SITE = { 
-  isPost: false,
-  isHome: true
-}</script><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">50</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div></div><div id="body-wrap"><div class="full_page" id="nav" style="background-image: url(/img/index.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">愆凡の博客</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div><div id="site-info"><h1 id="site_title">愆凡の博客</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ZGW-GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true">    </i></a><a class="social-icon" href="zgwmail@icloud.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true">    </i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true">    </i></a></div></div><div id="scroll_down"><i class="fa fa-angle-down scroll-down-effects"></i></div></div><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/09/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%20%E3%80%91%EF%BC%9A%E8%BF%9B%E5%87%BB%E7%9A%84%20Java/" title="【 Java 系列 】：进击的 Java">【 Java 系列 】：进击的 Java</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Java/">Java</a></span></div><div class="content">一、Java 7 新特性
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">愆凡の博客</div>
+        <div class="logo-desc">
+            
+            Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ZGW-GitHub" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ZGW-GitHub" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                愆凡
+                
+            </div>
+
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['愆凡','Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig.'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
+
+
+    </div>
+</div>
+
+
+<main class="content">
+
+    
+    <div id="indexCard" class="index-card">
+        <div class="container ">
+            <div class="card">
+                <div class="card-content">
+                    
+                        <div class="dream">
+    
+    <div class="title center-align">
+        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;愆凡
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+            Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig.
+        </div>
+    </div>
+</div>
+                    
+
+                    
+
+                    
+
+                    
+                    <div id="recommend-sections" class="recommend">
+                        
+
+
+
+
+
+<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
+
+<div class="row">
+
+    
+    
+    <div class="col s12 m6" >
+        <div class="post-card" style="background-image: url('/medias/featureimages/10.png')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/Java/" class="category">Java</a>
+                        
+                    
+                </div>
+                <a href="/2019/10/18/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9AJava%20web%20%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+                    <h3 class="post-title">【 Java 系列 01 】：Java web 核心技术</h3>
+                </a>
+                <p class="post-description">
+                    
+                        一、Web 理论1、软件架构
+C / S 架构    :    客户端 / 服务器
+B / S 架构    :    浏览器 / 服务器
+
+
+                    
+                </p>
+                <a href="/2019/10/18/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9AJava%20web%20%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" >
+        <div class="post-card" style="background-image: url('/medias/featureimages/9.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="category">常用框架</a>
+                        
+                    
+                </div>
+                <a href="/2019/09/02/%E3%80%90%20Spring-Security%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9A%E8%A1%A8%E5%8D%95%E8%AE%A4%E8%AF%81/">
+                    <h3 class="post-title">【 Spring Security 系列 01 】：表单认证</h3>
+                </a>
+                <p class="post-description">
+                    
+                        Spring Security 入门，以及使用 Spring Security 进行表单认证，对认证流程进行源码详解来加强理解，同时拓展了“记住我功能”、自定义认证成功/失败处理器等功能的实现与讲解。
+                    
+                </p>
+                <a href="/2019/09/02/%E3%80%90%20Spring-Security%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9A%E8%A1%A8%E5%8D%95%E8%AE%A4%E8%AF%81/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" data-aos="zoom-in-up">
+        <div class="post-card" style="background-image: url('/medias/featureimages/17.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="category">网络编程</a>
+                        
+                    
+                </div>
+                <a href="/2019/11/09/%E3%80%90%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%2004%20%E3%80%91%EF%BC%9ANetty/">
+                    <h3 class="post-title">【 网络编程 04 】：Netty</h3>
+                </a>
+                <p class="post-description">
+                    
+                        一、概念
+Netty 是一款用于创建高性能网络应用程序的高级框架。
+Netty 的异步编程模型是建立在 Future 和回调的概念之上的，而
+                    
+                </p>
+                <a href="/2019/11/09/%E3%80%90%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%2004%20%E3%80%91%EF%BC%9ANetty/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" data-aos="zoom-in-up">
+        <div class="post-card" style="background-image: url('/medias/featureimages/17.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/" class="category">必备技术</a>
+                        
+                    
+                </div>
+                <a href="/2019/09/22/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2006%20%E3%80%91%EF%BC%9A%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">
+                    <h3 class="post-title">【 必备技术 06 】：模板引擎</h3>
+                </a>
+                <p class="post-description">
+                    
+                        一、Thymeleaf1、声明名称空间对模板处理没有任何影响，但是可以防止 IDE 对 th: * 属性的名称空间未定义的报错 。
+1&lt
+                    
+                </p>
+                <a href="/2019/09/22/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2006%20%E3%80%91%EF%BC%9A%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FFCC00 0%, #FF9500 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    
+
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/10/09/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%20%E3%80%91%EF%BC%9A%E8%BF%9B%E5%87%BB%E7%9A%84%20Java/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【 Java 系列 】：进击的 Java">
+                            
+                            <span class="card-title">【 Java 系列 】：进击的 Java</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、Java 7 新特性
 Java 7 新特性
 
 二进制面值
@@ -82,11 +536,184 @@ switch 对 String 的支持
 try-with-resource
 捕获多种异常并用改进后的类型检查来重新抛出异常
 创建泛型时类型推断
-全新的集合声明以及获取集合中的值的方式
-新增一些取环境信息的工具方法
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/09/%E3%80%90%20Interview%20%E3%80%91/" title="【 Interview 】">【 Interview 】</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Interview/">Interview</a></span></div><div class="content">额title: 【 Interview 】top: falsecover: falsetoc: truemathjax: falsefront-matter: cc_bypassword: cd0262c224ac0370521a2dc5e298c8ab3baea47a4d9909b12345fbd ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/22/%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/" title="【 Spring 系列 03 】：Spring Data">【 Spring 系列 03 】：Spring Data</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">常用框架</a></span></div><div class="content">Spring Data
+全新的集合
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-Spring Data 项目是从 2010 年发展起来的，从创立之初 Spring Data 就想提供一个大家熟悉的、一致的、基于 Spring 的数据访问编程模型，同时仍然保留底层数据存储的特殊特性。它可以轻松地让开发者使用数据访问技术，包括：关系数据库、非关系数据库（N ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/21/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2001%20%E3%80%91%EF%BC%9AGit/" title="【 必备技术 01 】：Git">【 必备技术 01 】：Git</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/">必备技术</a></span></div><div class="content">概念
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/10/09/%E3%80%90%20Interview%20%E3%80%91/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【 Interview 】">
+                            
+                            <span class="card-title">【 Interview 】</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                额Java ME    &amp;    Java SE    &amp;    Java EE
+
+Java SE
+标准版的 Java 平台，为用户提供一个程序开发环境。
+这个程序开发环境提供了开发与运行 Java 软件的编译器等开发工具 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Interview/" class="post-category">
+                                    Interview
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/22/%E3%80%90%20Spring%20%E7%B3%BB%E5%88%97%2003%20%E3%80%91%EF%BC%9ASpring%20Data/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/6.png" class="responsive-img" alt="【 Spring 系列 03 】：Spring Data">
+                            
+                            <span class="card-title">【 Spring 系列 03 】：Spring Data</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Spring Data
+
+Spring Data 项目是从 2010 年发展起来的，从创立之初 Spring Data 就想提供一个大家熟悉的、一致的、基于 Spring 的数据访问编程模型，同时仍然保留底层数据存储的特殊特性。它可以轻松地
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    常用框架
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Spring-%E5%85%A8%E5%AE%B6%E6%A1%B6/">
+                            <span class="chip bg-color">Spring 全家桶</span>
+                        </a>
+                        
+                        <a href="/tags/Spring/">
+                            <span class="chip bg-color">Spring</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/22/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2006%20%E3%80%91%EF%BC%9A%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【 必备技术 06 】：模板引擎">
+                            
+                            <span class="card-title">【 必备技术 06 】：模板引擎</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、Thymeleaf1、声明名称空间对模板处理没有任何影响，但是可以防止 IDE 对 th: * 属性的名称空间未定义的报错 。
+1&lt;html xmlns:th="http://www.thymeleaf.org"&gt;
+
+2、各
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    必备技术
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/21/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2001%20%E3%80%91%EF%BC%9AGit/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="【 必备技术 01 】：Git">
+                            
+                            <span class="card-title">【 必备技术 01 】：Git</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                概念
 工作区：
 
 是对项目的某个版本独立提取出来的内容。
@@ -97,7 +724,46 @@ Spring Data 项目是从 2010 年发展起来的，从创立之初 Spring Data �
 
 Git 仓库目录：
 
-是 Git 用来保存项目的元数据和对象数据库的地方。 这是 G ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/21/%E3%80%90%20Redis%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9ARedis/" title="【 Redis 系列 01 】：Redis">【 Redis 系列 01 】：Redis</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">一、与 Memcache 对比
+是
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    必备技术
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/21/%E3%80%90%20Redis%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9ARedis/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/12.png" class="responsive-img" alt="【 Redis 系列 01 】：Redis">
+                            
+                            <span class="card-title">【 Redis 系列 01 】：Redis</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、与 Memcache 对比
 
 
 
@@ -127,74 +793,539 @@ Redis
 
 
 
-value 最大 1MB
-value 最大 1GB
+value 最大 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Redis/">
+                            <span class="chip bg-color">Redis</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/19/%E3%80%90%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%2001%20%E3%80%91%EF%BC%9A%E8%AE%A1%E7%BD%91/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【 网络编程 01 】：计网">
+                            
+                            <span class="card-title">【 网络编程 01 】：计网</span>
+                        </div>
+                    </a>
 
-
-可使用多核
-只使用单 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/19/%E3%80%90%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%2001%20%E3%80%91%EF%BC%9A%E8%AE%A1%E7%BD%91/" title="【 网络编程 01 】：计网">【 网络编程 01 】：计网</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a></span></div><div class="content">
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
 一、计算机网络体系结构1、OSI 七层模型
 开放系统互连基本参考模型 OSI/RM ( Open System Interconnection Reference Model )
 
 
 2、TCP / IP 四层模型
 TCP IP协议数据流
-二、UDP
-UDP 是无连接的
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-19
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    网络编程
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-即发送数据之前不需要建立 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/17/%E3%80%90%20Dubbo%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9ASpringBoot%20%E6%95%B4%E5%90%88%20Dubbo/" title="【 Dubbo 系列 02 】：SpringBoot 整合 Dubbo">【 Dubbo 系列 02 】：SpringBoot 整合 Dubbo</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">常用框架</a></span></div><div class="content">一、服务提供者依赖12345678910111213141516171819&lt;dependency&gt;    &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;    &lt;artifactId&gt;dubbo-spring-boot-sta ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/15/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9A%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" title="【 Java 系列 02 】：前端技术">【 Java 系列 02 】：前端技术</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Java/">Java</a></span></div><div class="content">JQuery一、AJAX1、发送 ajax 请求
-123456789jQuery(document).ready(function () &#123;        $("#getopt").on("click", function () &#123;        ...        AJAX  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/05/%E3%80%90%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%2001%20%E3%80%91%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" title="【 算法与数据结构 01 】：排序算法">【 算法与数据结构 01 】：排序算法</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a></span></div><div class="content">
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/17/%E3%80%90%20Dubbo%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9ASpringBoot%20%E6%95%B4%E5%90%88%20Dubbo/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/8.png" class="responsive-img" alt="【 Dubbo 系列 02 】：SpringBoot 整合 Dubbo">
+                            
+                            <span class="card-title">【 Dubbo 系列 02 】：SpringBoot 整合 Dubbo</span>
+                        </div>
+                    </a>
 
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、服务提供者依赖12345678910111213141516171819&lt;dependency&gt;    &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;    &lt;artif
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    常用框架
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Dubbo/">
+                            <span class="chip bg-color">Dubbo</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/15/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9A%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/2.png" class="responsive-img" alt="【 Java 系列 02 】：前端技术">
+                            
+                            <span class="card-title">【 Java 系列 02 】：前端技术</span>
+                        </div>
+                    </a>
 
-工具类12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/05/%E3%80%90%20Spring-Security%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9AOAuth/" title="【 Spring Security 系列 02 】：OAuth">【 Spring Security 系列 02 】：OAuth</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">常用框架</a></span></div><div class="content">一、OAuth 协议1、OAuth 协议解决的问题实现不同厂商的应用之间用户的授权与资源共享的安全
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                JQuery一、AJAX1、发送 ajax 请求
+123456789jQuery(document).ready(function () &#123;        $("#getopt").on("click", function () 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/05/%E3%80%90%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%2001%20%E3%80%91%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="【 算法与数据结构 01 】：排序算法">
+                            
+                            <span class="card-title">【 算法与数据结构 01 】：排序算法</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                各种排序算法
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-05
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    算法与数据结构
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/05/%E3%80%90%20Spring-Security%20%E7%B3%BB%E5%88%97%2002%20%E3%80%91%EF%BC%9AOAuth/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【 Spring Security 系列 02 】：OAuth">
+                            
+                            <span class="card-title">【 Spring Security 系列 02 】：OAuth</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、OAuth 协议1、OAuth 协议解决的问题实现不同厂商的应用之间用户的授权与资源共享的安全
 2、OAuth 协议授权流程
 
 服务提供商（Provider）：提供令牌的一方，比如：QQ 、微信
-资源所有者（Resource Owner）：即用户，我们要获取的即用户的资源。
-第三方应用（Clie ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/02/%E3%80%90%20Spring-Security%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9A%E8%A1%A8%E5%8D%95%E8%AE%A4%E8%AF%81/" title="【 Spring Security 系列 01 】：表单认证">【 Spring Security 系列 01 】：表单认证</a><div class="article-meta-wrap"><span class="article-meta"><i class="fa fa-thumb-tack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">常用框架</a></span></div><div class="content">一、Spring Security 简介1、 核心功能进行用户的认证与授权。
-2、 基本原理SpringSecurity 实质上就是一组过滤链。而用户的认证就是通过各种过滤器链对请求进行拦截处理来实现的。
+资源所有者（Resource Owner
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-05
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    常用框架
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-3、 过滤器链①、核心过滤器链可以通过 DefaultSecurityFilter 类 de ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/09/02/%E3%80%90%20%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF%2002%20%E3%80%91%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="【 必备技术 02 】：正则表达式">【 必备技术 02 】：正则表达式</a><div class="article-meta-wrap"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>2020-03-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/">必备技术</a></span></div><div class="content">一、常用
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Spring-%E5%85%A8%E5%AE%B6%E6%A1%B6/">
+                            <span class="chip bg-color">Spring 全家桶</span>
+                        </a>
+                        
+                        <a href="/tags/Spring-Security/">
+                            <span class="chip bg-color">Spring Security</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/02/%E3%80%90%20Spring-Security%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9A%E8%A1%A8%E5%8D%95%E8%AE%A4%E8%AF%81/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【 Spring Security 系列 01 】：表单认证">
+                            
+                            <span class="card-title">【 Spring Security 系列 01 】：表单认证</span>
+                        </div>
+                    </a>
 
-^
-一行的开始
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Spring Security 入门，以及使用 Spring Security 进行表单认证，对认证流程进行源码详解来加强理解，同时拓展了“记住我功能”、自定义认证成功/失败处理器等功能的实现与讲解。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    常用框架
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-$
-结束
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Spring-%E5%85%A8%E5%AE%B6%E6%A1%B6/">
+                            <span class="chip bg-color">Spring 全家桶</span>
+                        </a>
+                        
+                        <a href="/tags/Spring-Security/">
+                            <span class="chip bg-color">Spring Security</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
 
-字符组：
-
-[ae]
-匹配：a / e
-
-字符组元字符
-
--
-
-注意：
-只有在字符组内部，它才是字符组元字符；
-当其处于字符组的开头，它就只是一个普通字符 
-
-使用实例：
-表示一个范围
-[0-9a-fA-F_?!]
+</main>
 
 
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/3/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">4 / 5</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/5/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
-^
 
-注意：
-只有其在字符组内部，且 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-fw fa-chevron-left" aria-hidden="true"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-fw fa-chevron-right" aria-hidden="true"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">愆凡</div><div class="author-info__description">Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig.</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">50</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">标签</div><div class="length_num">14</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">分类</div><div class="length_num">12</div></a></div></div><div class="card-info-bookmark is-center"><a class="bookmark button--primary button--animated" id="bookmark-it" href="javascript:;" title="加入书签" target="_self"><i class="fa fa-bookmark" aria-hidden="true"></i><span>加入书签</span></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ZGW-GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a><a class="social-icon" href="zgwmail@icloud.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>公告</span></div><div class="announcement_content">感謝訪問本站，若喜歡請收藏 ^_^</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fa fa-history" aria-hidden="true"></i><span>最新文章</span></div><div class="aside-recent-item"> <div class="aside-recent-post"><a href="/2020/03/19/%E3%80%90%20MySQL%20%E7%B3%BB%E5%88%97%2004%20%E3%80%91%EF%BC%9AMySQL%20%E5%8E%9F%E7%90%86/"><div class="aside-post-title no-aside-cover"><div class="aside-post_title" href="/2020/03/19/%E3%80%90%20MySQL%20%E7%B3%BB%E5%88%97%2004%20%E3%80%91%EF%BC%9AMySQL%20%E5%8E%9F%E7%90%86/" title="【 MySQL 系列 04 】：MySQL 原理">【 MySQL 系列 04 】：MySQL 原理</div><time class="aside-post_meta post-meta__date">2020-03-19</time></div></a></div><div class="aside-recent-post"><a href="/2020/03/08/%E3%80%90%20Spring%20Boot%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9A%E5%9F%BA%E7%A1%80/"><div class="aside-post-title no-aside-cover"><div class="aside-post_title" href="/2020/03/08/%E3%80%90%20Spring%20Boot%20%E7%B3%BB%E5%88%97%2001%20%E3%80%91%EF%BC%9A%E5%9F%BA%E7%A1%80/" title="【 Spring Boot 系列 01 】：基础">【 Spring Boot 系列 01 】：基础</div><time class="aside-post_meta post-meta__date">2020-03-08</time></div></a></div><div class="aside-recent-post"><a href="/2020/02/23/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2004%20%E3%80%91%EF%BC%9AJVM/"><div class="aside-post-title no-aside-cover"><div class="aside-post_title" href="/2020/02/23/%E3%80%90%20Java%20%E7%B3%BB%E5%88%97%2004%20%E3%80%91%EF%BC%9AJVM/" title="【 Java 系列 04 】：JVM">【 Java 系列 04 】：JVM</div><time class="aside-post_meta post-meta__date">2020-02-23</time></div></a></div><div class="aside-recent-post"><a href="/2019/12/27/%E3%80%90%20%E5%A4%A7%E6%95%B0%E6%8D%AE%2001%20%E3%80%91%EF%BC%9AHadoop/"><div class="aside-post-title no-aside-cover"><div class="aside-post_title" href="/2019/12/27/%E3%80%90%20%E5%A4%A7%E6%95%B0%E6%8D%AE%2001%20%E3%80%91%EF%BC%9AHadoop/" title="A">A</div><time class="aside-post_meta post-meta__date">2019-12-27</time></div></a></div><div class="aside-recent-post"><a href="/2019/12/24/%E3%80%90%20WSL%20%E3%80%91/"><div class="aside-post-title no-aside-cover"><div class="aside-post_title" href="/2019/12/24/%E3%80%90%20WSL%20%E3%80%91/" title="WSL">WSL</div><time class="aside-post_meta post-meta__date">2019-12-24</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fa fa-folder-open" aria-hidden="true"></i><span>分类</span></div><ul class="aside-category-item">       <li class="aside-category-list"><a class="aside-category-list_link" href="/categories/Interview/"><span class="aside-category-list_name">Interview</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/Java/"><span class="aside-category-list_name">Java</span><span class="aside-category-list_length">5</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/WSL/"><span class="aside-category-list_name">WSL</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="aside-category-list_name">分布式</span><span class="aside-category-list_length">6</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="aside-category-list_name">大数据</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/"><span class="aside-category-list_name">常用框架</span><span class="aside-category-list_length">13</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E5%BF%85%E5%A4%87%E6%8A%80%E6%9C%AF/"><span class="aside-category-list_name">必备技术</span><span class="aside-category-list_length">6</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="aside-category-list_name">操作系统</span><span class="aside-category-list_length">2</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="aside-category-list_name">数据库</span><span class="aside-category-list_length">8</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="aside-category-list_name">服务器</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="aside-category-list_name">算法与数据结构</span><span class="aside-category-list_length">2</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"><span class="aside-category-list_name">网络编程</span><span class="aside-category-list_length">4</span></a></li></ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fa fa-tags" aria-hidden="true"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Dubbo/" style="font-size: 17.6px; color: #999ca1">Dubbo</a> <a href="/tags/Hadoop/" style="font-size: 16px; color: #999">Hadoop</a> <a href="/tags/Linux/" style="font-size: 16px; color: #999">Linux</a> <a href="/tags/MQ/" style="font-size: 20.8px; color: #99a3b0">MQ</a> <a href="/tags/MySQL/" style="font-size: 22.4px; color: #99a6b7">MySQL</a> <a href="/tags/Redis/" style="font-size: 19.2px; color: #999fa8">Redis</a> <a href="/tags/Spring/" style="font-size: 20.8px; color: #99a3b0">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 17.6px; color: #999ca1">Spring Boot</a> <a href="/tags/Spring-Cloud/" style="font-size: 16px; color: #999">Spring Cloud</a> <a href="/tags/Spring-MVC/" style="font-size: 16px; color: #999">Spring MVC</a> <a href="/tags/Spring-Security/" style="font-size: 17.6px; color: #999ca1">Spring Security</a> <a href="/tags/Spring-%E5%85%A8%E5%AE%B6%E6%A1%B6/" style="font-size: 24px; color: #99a9bf">Spring 全家桶</a> <a href="/tags/Tomcat/" style="font-size: 16px; color: #999">Tomcat</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 16px; color: #999">设计模式</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fa fa-archive" aria-hidden="true"></i><span>归档</span></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/"><span class="archive-list-date">2020年03月</span><span class="archive-list-count">2</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/"><span class="archive-list-date">2020年02月</span><span class="archive-list-count">1</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><span class="archive-list-date">2019年12月</span><span class="archive-list-count">8</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/"><span class="archive-list-date">2019年11月</span><span class="archive-list-count">14</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/"><span class="archive-list-date">2019年10月</span><span class="archive-list-count">13</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><span class="archive-list-date">2019年09月</span><span class="archive-list-count">11</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><span class="archive-list-date">2019年08月</span><span class="archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">50</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已运行时间 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" start_date="6/7/2018 00:00:00">     </div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 愆凡</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">簡</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>let subtitleEffect = true
-if (subtitleEffect){ 
-  let typed = new Typed("#subtitle", {
-    strings: '今日事&#44;今日畢,Never put off till tomorrow what you can do today'.split(","),
-    startDelay: 300,
-    typeSpeed: 150,
-    loop: false,
-    backSpeed: 50
-  })
-}else{
-  document.getElementById("subtitle").innerHTML = '今日事&#44;今日畢'
-  }</script></body></html>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="http://yoursite.com" target="_blank">愆凡</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">160.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ZGW-GitHub" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zgwmail@icloud.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=864127700" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 864127700" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
